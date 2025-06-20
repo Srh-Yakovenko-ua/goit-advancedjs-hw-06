@@ -3,6 +3,8 @@
   Ви хочете створити новий тип Params, який включає всі поля з Form, крім errors.
 */
 
+type Nullable<T> = T | null;
+
 type Errors = {
   email?: string[];
   firstName?: string[];
@@ -11,14 +13,14 @@ type Errors = {
 };
 
 type Form = {
-  email: string | null;
-  firstName: string | null;
-  lastName: string | null;
-  phone: string | null;
+  email: Nullable<string>
+  firstName: Nullable<string>
+  lastName: Nullable<string>
+  phone: Nullable<string>
   errors: Errors;
 };
 
 // Реалізуйте Params так, щоб унеможливити поле 'errors' з типу Form
-type Params = Form;
+type Params = Omit<Form, 'errors'>;
 
 export {};
